@@ -1,6 +1,6 @@
-import { Getter } from "Getter";
-import { CommandUsedEvent } from "CommandUsedEvent";
-import { CommandHandler } from "CommandHandler";
+import { Getter } from "./Getter";
+import { CommandUsedEvent } from "./CommandUsedEvent";
+import { CommandHandler } from "./CommandHandler";
 
 export type CommandPropertyGetter<
   TReturn,

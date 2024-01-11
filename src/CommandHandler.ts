@@ -1,6 +1,6 @@
-import { fromGetter } from "Getter";
-import { CommandUsedEventSignal } from "CommandUsedEventSignal";
-import { Command } from "Command";
+import { fromGetter } from "./Getter";
+import { CommandUsedEventSignal } from "./CommandUsedEventSignal";
+import { Command } from "./Command";
 
 export class CommandHandler<TCommand extends Command = Command> {
   readonly commandUsed: CommandUsedEventSignal;

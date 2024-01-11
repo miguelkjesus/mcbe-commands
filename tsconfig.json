@@ -6,8 +6,7 @@
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "skipLibCheck": true,
-    "baseUrl": "./src",
-    "outDir": "./build",
+    "outDir": "dist",
 
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,

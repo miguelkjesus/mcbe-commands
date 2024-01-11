@@ -1,6 +1,6 @@
 import { world } from "@minecraft/server";
-import { Signal } from "Signal";
-import { CommandUsedEvent } from "CommandUsedEvent";
+import { Signal } from "./Signal";
+import { CommandUsedEvent } from "./CommandUsedEvent";
 
 export class CommandUsedEventSignal extends Signal<
   (arg: CommandUsedEvent) => void
