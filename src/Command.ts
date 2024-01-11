@@ -5,12 +5,12 @@ import { CommandHandler } from "./CommandHandler";
 export type CommandPropertyGetter<
   TReturn,
   TCommandHandler extends CommandHandler = CommandHandler
-> = Getter<(event: CommandUsedEvent, handler: TCommandHandler) => TReturn>;
+> = Getter<[event: CommandUsedEvent, handler: TCommandHandler], TReturn>;
 
 export abstract class Command {
   abstract name: string;
   aliases: string[] = [];
-  canUse: CommandPropertyGetter<boolean, CommandHandler<this>> = true;
+  canUse: CommandPropertyGetter<boolean, CommandHandler<this>> = new Getter(true);
 
   abstract execute(
     event: CommandUsedEvent,

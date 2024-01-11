@@ -4,17 +4,14 @@ function isCallable<T>(maybeFunc: T | unknown): maybeFunc is Function {
   return typeof maybeFunc === "function";
 }
 
-export type Getter<T extends (...args: any) => any = (...args: any) => any> =
-  | ReturnType<T>
-  | T;
+export class Getter<TParams extends any[], TReturn> {
+  value: (...args: TParams) => TReturn;
 
-export function fromGetter<TValue, TGetterArgs extends any[]>(
-  getter: Getter<(...args: TGetterArgs) => NotFunction<TValue>>,
-  args: TGetterArgs
-): TValue {
-  if (isCallable(getter)) {
-    return getter(...args);
-  } else {
-    return getter;
+  constructor(getter: TReturn | ((...args: TParams) => TReturn)) {
+    if (isCallable(getter)) {
+      this.value = getter;
+    } else {
+      this.value = () => getter;
+    }
   }
 }

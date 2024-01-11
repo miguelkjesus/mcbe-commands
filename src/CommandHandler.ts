@@ -1,4 +1,3 @@
-import { fromGetter } from "./Getter";
 import { CommandUsedEventSignal } from "./CommandUsedEventSignal";
 import { Command } from "./Command";
 
@@ -21,11 +20,11 @@ export class CommandHandler<TCommand extends Command = Command> {
   start(): CommandHandler {
     this.commandUsed.subscribe((event) => {
       let command = this.getCommand(event.command);
-      if (command === undefined || !fromGetter(command.canUse, [event, this])) {
+      if (command === undefined || !command.canUse.value(event, this)) {
         event.sender.sendMessage(
           `§cUnrecognised command '${
             this.prefix + event.command
-          }'§r. Either you do not have permission to use this command or it doesn't exist.`
+          }'. Either you do not have permission to use this command or it doesn't exist.`
         );
       } else {
         try {
