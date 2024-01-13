@@ -10,10 +10,10 @@ export type CommandPropertyGetter<
 export abstract class Command {
   abstract name: string;
   aliases: string[] = [];
-  canUse: CommandPropertyGetter<boolean, CommandHandler<this>> = new Getter(true);
+  canUse: CommandPropertyGetter<boolean, CommandHandler<Command>> = new Getter(true);
 
   abstract execute(
     event: CommandUsedEvent,
-    handler: CommandHandler<this>
+    handler: CommandHandler<Command>
   ): void;
 }
