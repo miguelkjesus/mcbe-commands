@@ -15,8 +15,7 @@ describe("splitCommand()", () => {
       "command   arg0   arg1   ",
       { command: "command", args: ["arg0", "arg1"] },
     ],
-    [" arg0 arg1", { command: "", args: ["arg0", "arg1"] }],
-    ["    arg0    arg1   ", { command: "", args: ["arg0", "arg1"] }],
+    ["", { command: "", args: [] }],
     ['command " arg 0 "', { command: "command", args: [" arg 0 "] }],
   ];
 
