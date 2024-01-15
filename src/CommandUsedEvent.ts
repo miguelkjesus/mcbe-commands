@@ -1,4 +1,5 @@
 import { ChatSendBeforeEvent, Player } from "@minecraft/server";
+import { splitCommand } from "./splitCommand";
 
 export interface ICommandUsedEvent {
   chatEvent: ChatSendBeforeEvent;
@@ -29,19 +30,24 @@ export class CommandUsedEvent implements ICommandUsedEvent {
   ): CommandUsedEvent | null {
     let { message } = chatEvent;
 
-    let options: Partial<ICommandUsedEvent> = {};
+    let options = <ICommandUsedEvent>{};
     options.chatEvent = chatEvent;
     options.sender = chatEvent.sender;
 
     if (!message.startsWith(prefix)) return null;
     options.prefix = prefix;
 
-    let [cmd, ...args] = message.split(" "); // TODO: Split around quotes
-    cmd = cmd.slice(prefix.length);
+    let cmd;
+    try {
+      cmd = splitCommand(message.slice(prefix.length));
+    } catch (err) {
+      // If failed to split the command, it wasn't a valid command.
+      return null;
+    }
 
-    options.command = cmd;
-    options.args = args;
+    options.command = cmd.command;
+    options.args = cmd.args;
 
-    return new CommandUsedEvent(options as ICommandUsedEvent);
+    return new CommandUsedEvent(options);
   }
 }

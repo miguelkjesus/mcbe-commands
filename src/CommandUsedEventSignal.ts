@@ -13,8 +13,11 @@ export class CommandUsedEventSignal extends Signal<
 
     world.beforeEvents.chatSend.subscribe((ev) => {
       if (prefix !== undefined && ev.message.startsWith(prefix)) {
-        this.emit(CommandUsedEvent.fromChatEvent(ev, prefix)!);
-        ev.cancel = true;
+        let event = CommandUsedEvent.fromChatEvent(ev, prefix);
+        if (event !== null) {
+          this.emit(event);
+          ev.cancel = true;
+        }
       }
     });
   }
