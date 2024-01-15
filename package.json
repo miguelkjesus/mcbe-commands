@@ -1,6 +1,6 @@
 {
   "name": "@mhesus/mcbe-commands",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A library that implements a simple JSON-based database into minecraft bedrock utilising dynamic properties.",
   "author": "Miguel Jesus",
   "license": "ISC",
