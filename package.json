@@ -4,7 +4,7 @@
   "description": "A library that implements a simple JSON-based database into minecraft bedrock utilising dynamic properties.",
   "author": "Miguel Jesus",
   "license": "ISC",
-  "main": "build/index.js",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rimraf dist && tsc",
