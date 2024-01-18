@@ -37,13 +37,8 @@ export class CommandUsedEvent implements ICommandUsedEvent {
     if (!message.startsWith(prefix)) return null;
     options.prefix = prefix;
 
-    let cmd;
-    try {
-      cmd = splitCommand(message.slice(prefix.length));
-    } catch (err) {
-      // If failed to split the command, it wasn't a valid command.
-      return null;
-    }
+    let cmd = splitCommand(message.slice(prefix.length));
+    if (cmd === null) return null;
 
     options.command = cmd.command;
     options.args = cmd.args;

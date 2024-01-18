@@ -30,7 +30,8 @@ describe("splitCommand()", () => {
 
   let errorInputs: ErrorTestCase[] = [['command " arg0 " arg1 "arg 2']];
 
-  it.each(errorInputs)("throws on the input: %s", (input) => {
-    expect(() => splitCommand(input)).toThrow();
+  it.each(errorInputs)("returns null on the input: %s", (input) => {
+    let result = splitCommand(input);
+    expect(result).toBeNull();
   });
 });

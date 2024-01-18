@@ -48,7 +48,7 @@ export function splitCommand(text: string): SplitCommand {
   }
 
   if (quoted) {
-    throw new Error("Input has an unclosed quote");
+    return null
   }
 
   if (![" ", '"'].includes(text[text.length - 1])) {
