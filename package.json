@@ -19,5 +19,8 @@
     "rimraf": "^5.0.5",
     "ts-jest": "^29.1.1",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@mhesus/mcbe-colors": "^1.0.1"
   }
 }

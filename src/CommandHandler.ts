@@ -1,5 +1,6 @@
 import { CommandUsedEventSignal } from "./CommandUsedEventSignal";
 import { Command } from "./Command";
+import { red } from "@mhesus/mcbe-colors";
 
 export class CommandHandler<TCommand extends Command = Command> {
   readonly commandUsed: CommandUsedEventSignal;
@@ -22,16 +23,20 @@ export class CommandHandler<TCommand extends Command = Command> {
       let command = this.getCommand(event.command);
       if (command === undefined || !command.canUse.value(event, this)) {
         event.sender.sendMessage(
-          `§cUnrecognised command '${
-            this.prefix + event.command
-          }'. Either you do not have permission to use this command or it doesn't exist.`
+          red(
+            `Unrecognised command '${
+              this.prefix + event.command
+            }'. Either you do not have permission to use this command or it doesn't exist.`
+          )
         );
       } else {
         try {
           command.execute(event, this);
         } catch (error) {
           event.sender.sendMessage(
-            `§cThere was an unhandled error while executing the command.\n${error.name}: ${error.message}\n${error.stack}§r`
+            red(
+              `There was an unhandled error while executing the command.\n${error.name}: ${error.message}\n${error.stack}`
+            )
           );
         }
       }
